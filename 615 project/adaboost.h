@@ -8,6 +8,9 @@
 
 #ifndef adaboost_h
 #define adaboost_h
+#include <vector>
+#include <Eigen/Dense>
 
+std::vector<int> adaboost(MatrixXd &data);
 
 #endif /* adaboost_h */
