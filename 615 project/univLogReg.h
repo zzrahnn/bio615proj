@@ -9,5 +9,6 @@
 #ifndef univLogReg_h
 #define univLogReg_h
 
+void univLogReg(marix &m, int column);
 
 #endif /* univLogReg_h */
