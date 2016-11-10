@@ -1,4 +1,5 @@
-//
+
+#include <Eigen/Dense>
 //  main.cpp
 //  615 project
 //

@@ -220,6 +220,11 @@
 		8464321B1DCBDE7F0099C9F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"/Users/ninazhou/Downloads/eigen-eigen-b9cd8366d4e8",
+					"<Multiple",
+					"values>",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -227,6 +232,11 @@
 		8464321C1DCBDE7F0099C9F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"/Users/ninazhou/Downloads/eigen-eigen-b9cd8366d4e8",
+					"<Multiple",
+					"values>",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
