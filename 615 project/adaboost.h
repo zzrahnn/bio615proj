@@ -11,6 +11,6 @@
 #include <vector>
 #include <Eigen/Dense>
 
-std::vector<int> adaboost(MatrixXd &data);
+std::vector<bool> adaboost(Eigen::MatrixXd &data);
 
 #endif /* adaboost_h */

@@ -9,6 +9,6 @@
 #ifndef univLogReg_h
 #define univLogReg_h
 
-void univLogReg(marix &m, int column);
+std::vector<int> univLogReg(std::vector<double> weights, Eigen::MatrixXd &data, int column);
 
 #endif /* univLogReg_h */
