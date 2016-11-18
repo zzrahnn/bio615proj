@@ -5,10 +5,13 @@
 //  Created by Dylan Sun on 11/10/16.
 //  Copyright © 2016 Nina Zhou. All rights reserved.
 //
+// using univariate logistic regression as the weak classifier, run adaboost
 
 #include <stdio.h>
 #include <math.h>
 #include <cmath>
+#include <vector>
+#include <Eigen/Dense>
 #include "adaboost.h"
 #include "univLogReg.h"
 using namespace std;
@@ -34,7 +37,7 @@ std::vector<bool> adaboost(Eigen::MatrixXd &data) {
   
     for (int t = 1; t <= T; t++) {
         // train the classifier with respect to the weighted sample set and obtain hypothesis
-        std::vector<int> hypothesis = univLogReg(weights, data, t); // t is the column
+        std::vector<bool> hypothesis = univLogReg(weights, data, t); // t is the column
         all_hypothesis.push_back(hypothesis);
         
         // calculate the training error of hypothesis

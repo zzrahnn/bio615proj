@@ -9,6 +9,6 @@
 #ifndef univLogReg_h
 #define univLogReg_h
 
-std::vector<int> univLogReg(std::vector<double> weights, Eigen::MatrixXd &data, int column);
+std::vector<bool> univLogReg(std::vector<double> weights, Eigen::MatrixXd &data, int column);
 
 #endif /* univLogReg_h */

@@ -10,7 +10,6 @@
 #include <iostream>
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "yoyoyoyo";
+    adaboost(data);
     return 0;
 }
