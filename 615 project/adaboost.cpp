@@ -33,7 +33,7 @@ std::vector<bool> adaboost(Eigen::MatrixXd &data) {
     double sum_bt = 0;
     
     // initialize object to store hypothesis; consider using a matrix or anything less stupid than this
-    vector< vector<int> > all_hypothesis;
+    vector< vector<bool> > all_hypothesis;
   
     for (int t = 1; t <= T; t++) {
         // train the classifier with respect to the weighted sample set and obtain hypothesis

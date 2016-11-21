@@ -10,6 +10,6 @@
 #include <iostream>
 
 int main(int argc, const char * argv[]) {
-    adaboost(data);
+    // adaboost(data);
     return 0;
 }
