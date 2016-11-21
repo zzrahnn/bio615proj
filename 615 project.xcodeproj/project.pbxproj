@@ -27,6 +27,7 @@
 /* Begin PBXFileReference section */
 		846432131DCBDE7F0099C9F1 /* 615 project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "615 project"; sourceTree = BUILT_PRODUCTS_DIR; };
 		846432161DCBDE7F0099C9F1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		84B7E17A1DE3A3CA00D5BA07 /* maximize */ = {isa = PBXFileReference; lastKnownFileType = folder; name = maximize; path = ../maximize; sourceTree = "<group>"; };
 		97863C741DD528F700AFED2B /* univLogReg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = univLogReg.h; sourceTree = "<group>"; };
 		97863C751DD5291800AFED2B /* adaboost.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = adaboost.h; sourceTree = "<group>"; };
 		978B1ABD1DD5313F002217FB /* adaboost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = adaboost.cpp; sourceTree = "<group>"; };
@@ -47,6 +48,7 @@
 		8464320A1DCBDE7F0099C9F1 = {
 			isa = PBXGroup;
 			children = (
+				84B7E1791DE3A39900D5BA07 /* maximization */,
 				846432151DCBDE7F0099C9F1 /* 615 project */,
 				846432141DCBDE7F0099C9F1 /* Products */,
 			);
@@ -70,6 +72,14 @@
 				97EED8A31DDE6BC300FBA2C9 /* univLogReg.cpp */,
 			);
 			path = "615 project";
+			sourceTree = "<group>";
+		};
+		84B7E1791DE3A39900D5BA07 /* maximization */ = {
+			isa = PBXGroup;
+			children = (
+				84B7E17A1DE3A3CA00D5BA07 /* maximize */,
+			);
+			name = maximization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
