@@ -93,6 +93,13 @@ std::vector<bool> adaboost(Eigen::MatrixXd &data) {
         }
         f_x.push_back(sum >= 0.5);
     }
+    // Note: what exactly should we be outputting?
+    // Once we hook this up to R, we should be outputting a trained classifier that can then
+    // be used for predicted; e.g. we should be outputting the betas from the logistic regression
+    // and all_bt (which is c_t)
+    // For each new point we want to predict, we calculate the hypothesis at that point using all sets of
+    // beta values (e.g. if we have 6 X columns we end up with 6 hypotheses at that point). Then, out c_t
+    // tells us which hypthosis to use at that point. 
 
     
     return f_x;
