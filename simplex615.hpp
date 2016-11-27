@@ -97,7 +97,7 @@ bool simplex615<F>::updateSimplex(F& foo, double scale) {
     for(int i=0; i < dim; ++i) {
         nextPoint[i] = midPoint[i] + scale * thruLine[i];
     }
-    double fNext = foo(nextPoint);
+    double fNext = foo(nextPoint,data,column,weights);
     if ( fNext < Y[idxHi] ) { // update only maximum values (if possible)
         for(int i=0; i < dim; ++i) { // because the order can be changed with
             X[idxHi][i] = nextPoint[i]; // evaluateExtremes() later
