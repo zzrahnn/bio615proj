@@ -11,6 +11,7 @@
 
 int main(int argc, const char * argv[]) {
     // adaboost(data);
+    std::cout << "Hello World!" << std::endl;
     return 0;
 }
 
