@@ -98,8 +98,10 @@ std::vector<bool> adaboost(Eigen::MatrixXd &data) {
     // be used for predicted; e.g. we should be outputting the betas from the logistic regression
     // and all_bt (which is c_t)
     // For each new point we want to predict, we calculate the hypothesis at that point using all sets of
-    // beta values (e.g. if we have 6 X columns we end up with 6 hypotheses at that point). Then, out c_t
-    // tells us which hypthosis to use at that point. 
+    // beta values (e.g. if we have 6 X columns we end up with 6 hypotheses at that point). Then, our c_t
+    // tells us which hypthosis to use at that point.
+    // Note that this means that our univLogReg function should probably be returning the beta's, not the
+    // explicit hypotheses.
 
     
     return f_x;
