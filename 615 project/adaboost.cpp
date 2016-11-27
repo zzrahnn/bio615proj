@@ -8,6 +8,7 @@
 // using univariate logistic regression as the weak classifier, run adaboost
 
 #include <stdio.h>
+#include <iostream>
 #include <math.h>
 #include <cmath>
 #include <vector>
@@ -46,13 +47,16 @@ std::vector<bool> adaboost(Eigen::MatrixXd &data) {
         double delta = 0.5; // This is a given number that terminates loop if the training error is too large
         
         for (int i = 1; i < l; i++) {
-            if (training_error == 0 || training_error >= delta) {
-                break;
-            }
             incorrect = (hypothesis[i] != data(i, T) );
             training_error += weights[i]*incorrect;
         }
-        
+        vector<bool> bad_training_error;
+        if (training_error >= delta) {
+            std::cout << "Training error = 0 or training error >= 0.5" << std::endl;
+            return bad_training_error; // for now just return any vector of bools to get us the hell out of here
+        } else if (training_error == 0) {
+            return hypothesis;
+        }
         // set b_t
         double b_t = log( (1-training_error)/training_error );
         all_bt.push_back(b_t);
@@ -67,7 +71,7 @@ std::vector<bool> adaboost(Eigen::MatrixXd &data) {
             sum_weights += weights[i];
         }
         // scale the weights; we are looping through again which might be slow? consider using "transform" function instead
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < l; i++) {
             weights[i] = weights[i]/sum_weights;
         }
     }

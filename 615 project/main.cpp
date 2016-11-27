@@ -31,15 +31,15 @@ int main(int argc, const char * argv[]) {
     
     
     
-    std::vector<double> weights;
+    /* std::vector<double> weights;
     double l = testdata.rows();
     double init_weight = 1/l;
     for (int i = 0; i < l; i++) {
         weights.push_back(init_weight);
-    }
+    }*/
     
-    std::vector<bool> results=univLogReg(weights, testdata, 1);
-    //std::vector<bool> results = adaboost(testdata);
+    //std::vector<bool> results=univLogReg(weights, testdata, 1);
+    std::vector<bool> results = adaboost(testdata);
     std::cout << "Results: " << std::endl;
     for (int i = 0; i < results.size(); i++) {
         std::cout << results[i] << " ";
