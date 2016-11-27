@@ -28,7 +28,7 @@ class likelihoodFunc {
         // data(i,y) is the same as saying "Y_i"
         // data(i, column) is the same as saying "X_i"; note the index starts at 0 and not 1 for column
         for (int i = 0; i < data.rows(); i++) {
-            likelihood += weights[i]*(data(i, y)*(beta[0]+beta[1]*data(i, column)-log(1-exp(beta[0]+beta[1]*data(i, column)))) - (1-data(i,y))*(log(1+exp(beta[0]+beta[1]*data(i, column)))));
+            likelihood -= weights[i]*(data(i, y)*(beta[0]+beta[1]*data(i, column)-log(1-exp(beta[0]+beta[1]*data(i, column)))) - (1-data(i,y))*(log(1+exp(beta[0]+beta[1]*data(i, column)))));
         }
     return likelihood;
     }

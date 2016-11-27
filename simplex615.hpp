@@ -54,20 +54,25 @@ void simplex615<F>::evaluateFunction(F& foo) {
     }
 }
 
-template <class F> void simplex615<F>::evaluateExtremes() {
+template <class F>
+void simplex615<F>::evaluateExtremes() {
     if ( Y[0] > Y[1] ) { // compare the first two points
-        idxHi = 0; idxLo = idxNextHi = 1; }
-    else { idxHi = 1; idxLo = idxNextHi = 0; } // for each of the next points
+        idxHi = 0; idxLo = idxNextHi = 1;
+    }
+    else {
+        idxHi = 1; idxLo = idxNextHi = 0;
+    }
+    // for each of the next points
     for(int i=2; i < dim+1; ++i) {
-        if ( Y[i] >= Y[idxLo] ) // update the best point if lower
+        if ( Y[i] <= Y[idxLo] ) // update the best point if lower
             idxLo = i;
-        else if ( Y[i] < Y[idxHi] ) { // update the worst point if higher
-            idxNextHi = idxHi; idxHi = i; }
-        else if ( Y[i] < Y[idxNextHi] ) // update also if it is the 2nd-worst point
+        else if ( Y[i] > Y[idxHi] ) { // update the worst point if higher
+            idxNextHi = idxHi; idxHi = i;
+        }
+        else if ( Y[i] > Y[idxNextHi] ) // update also if it is the 2nd-worst point
             idxNextHi = i;
     }
 }
-
 
 template <class F> void simplex615<F>::prepareUpdate() {
     for(int j=0; j < dim; ++j) {
@@ -89,8 +94,11 @@ template <class F>
 bool simplex615<F>::updateSimplex(F& foo, double scale) {
     std::vector<double> nextPoint; // next point to evaluate
     nextPoint.resize(dim);
-    for(int i=0; i < dim; ++i) { nextPoint[i] = midPoint[i] + scale * thruLine[i]; }
-    double fNext = foo(nextPoint, data, column, weights); if ( fNext > Y[idxHi] ) { // update only maximum values (if possible)
+    for(int i=0; i < dim; ++i) {
+        nextPoint[i] = midPoint[i] + scale * thruLine[i];
+    }
+    double fNext = foo(nextPoint);
+    if ( fNext < Y[idxHi] ) { // update only maximum values (if possible)
         for(int i=0; i < dim; ++i) { // because the order can be changed with
             X[idxHi][i] = nextPoint[i]; // evaluateExtremes() later
         }
@@ -102,7 +110,6 @@ bool simplex615<F>::updateSimplex(F& foo, double scale) {
     }
 }
 
-
 template <class F> void simplex615<F>::contractSimplex(F& foo) {
     for(int i=0; i < dim+1; ++i) { if ( i != idxLo ) { // except for the minimum point
         for(int j=0; j < dim; ++j) { X[i][j] = 0.5*( X[idxLo][j] + X[i][j] ); // move the point towards minimum
@@ -113,17 +120,21 @@ template <class F> void simplex615<F>::contractSimplex(F& foo) {
 }
 
 
-template <class F> void simplex615<F>::amoeba(F& foo, double tol) {
+template <class F>
+void simplex615<F>::amoeba(F& foo, double tol) {
     evaluateFunction(foo); // evaluate the function at the initial points
-    while(true) { evaluateExtremes(); // determine three important points
+    while(true) {
+        evaluateExtremes(); // determine three important points
         prepareUpdate(); // determine direction for optimization
         if ( check_tol(Y[idxHi],Y[idxLo],tol) ) break; // check convergence
         updateSimplex(foo, -1.0); // reflection
-        if ( Y[idxHi] > Y[idxLo] ) { updateSimplex(foo, -2.0); // expansion
+        if ( Y[idxHi] < Y[idxLo] ) {
+            updateSimplex(foo, -2.0); // expansion
         }
-        else if ( Y[idxHi] <= Y[idxNextHi] ) { if ( !updateSimplex(foo, 0.5) ) { // 1-d contraction
-            contractSimplex(foo); // multiple contractions
-        }
+        else if ( Y[idxHi] >= Y[idxNextHi] ) {
+            if ( !updateSimplex(foo, 0.5) ) { // 1-d contraction
+                contractSimplex(foo); // multiple contractions
+            }
         }
     }
 }
