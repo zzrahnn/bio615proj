@@ -36,7 +36,7 @@ std::vector<bool> adaboost(Eigen::MatrixXd &data) {
     // initialize object to store hypothesis; consider using a matrix or anything less stupid than this
     vector< vector<bool> > all_hypothesis;
   
-    for (int t = 1; t <= T; t++) {
+    for (int t = 0; t < T; t++) {
         // train the classifier with respect to the weighted sample set and obtain hypothesis
         std::vector<bool> hypothesis = univLogReg(weights, data, t); // t is the column
         all_hypothesis.push_back(hypothesis);
@@ -88,7 +88,7 @@ std::vector<bool> adaboost(Eigen::MatrixXd &data) {
     vector<bool> f_x; // this stores the final labels
     for (int i = 0; i <= l; i++) {
         sum = 0;
-        for (int t = 1; t <= T; t++) {
+        for (int t = 0; t < T; t++) {
             sum += all_bt[t]*all_hypothesis[t][i];
         }
         f_x.push_back(sum >= 0.5);
